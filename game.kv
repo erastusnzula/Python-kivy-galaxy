@@ -1,0 +1,49 @@
+#:import menu menu
+GameWidget:
+
+<GameWidget>:
+    menu_widget : menu_widget
+    converging_point_x : self.width / 2
+    converging_point_y : self.height * .75
+
+    canvas.before:
+        Rectangle:
+            source: "images/bg1.jpeg"
+            size: self.size
+    MenuWidget:
+        id: menu_widget
+
+    Label:
+        text: root.scores
+        font_name : 'fonts/Eurostile.ttf'
+        font_size: dp(20)
+        size_hint: .2, .2
+        pos_hint : {'x':0, 'top':1}
+
+    Label:
+        text: root.level
+        font_name : 'fonts/Eurostile.ttf'
+        font_size: dp(20)
+        size_hint: .2, .2
+        pos_hint : {'x':0.8, 'top':1}
+
+    Button:
+        text: root.pause_button
+        font_name : 'fonts/Eurostile.ttf'
+        font_size: root.f_size
+        background_normal: ''
+        background_color : 0, .4, .1, .85
+        pos_hint: {'x':0.05, 'top':.8}
+        size_hint: .2,.1
+        on_press : root.pause_resume_control()
+
+    Label:
+        text: "@erastus_nzula"
+        font_name : 'fonts/Eurostile.ttf'
+        font_size: dp(20)
+        size_hint: .25, .1
+        pos_hint : {'x':0, 'bottom':1}
+
+
+
+

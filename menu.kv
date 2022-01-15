@@ -1,0 +1,30 @@
+<MenuWidget>:
+    canvas.before:
+        Color:
+            rgba: 0,0,0,.8
+        Rectangle:
+            size : self.size
+    Label:
+        text : root.parent.game_title
+        pos_hint: {'center_x': .5, 'center_y' : .6}
+        font_name : 'fonts/Sackers-Gothic-Std-Light.ttf'
+        font_size: dp(30)
+    Button:
+        text : root.parent.play_button
+        pos_hint: {'center_x': .5, 'center_y' : .3}
+        size_hint: .2,.15
+        on_press : root.parent.play_button_pressed()
+        font_name : 'fonts/Eurostile.ttf'
+        font_size: dp(20)
+        background_normal: ''
+        background_color : 0, .4, .1, .85
+
+    Button:
+        text: root.parent.exit_button
+        font_name : 'fonts/Eurostile.ttf'
+        font_size: dp(15)
+        background_normal: ''
+        background_color : 0, .4, .1, .85
+        pos_hint: {'center_x': .85, 'center_y' : .1}
+        size_hint: .15,.1
+        on_press : root.parent.exit()
