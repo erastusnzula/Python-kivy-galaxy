@@ -11,6 +11,8 @@ def key_pressed(self, keyboard, keycode, text, modifier):
         self.speed_x = -self.SPEED_X
     elif keycode[1] == 'enter':
         self.play_button_pressed()
+    elif keycode[1] is 'q' or 'esc':
+        self.exit()
     elif keycode[1] == 'spacebar':
         if self.pause:
             self.resume_game()

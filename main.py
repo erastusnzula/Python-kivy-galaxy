@@ -5,17 +5,21 @@ import sys
 import random
 
 from kivy.config import Config
-from kivy.core.audio import SoundLoader
-from kivy.metrics import dp
 
-Config.set('graphics', 'width', '1100')
-Config.set('graphics', 'height', '360')
+Config.set('graphics', 'width', '1366')
+Config.set('graphics', 'height', '768')
 Config.set('kivy', 'window_icon', 'images/bg1.jpeg')
 
+from kivy.core.window import Window
+
+Window.fullscreen = True
+
+from kivy.core.audio import SoundLoader
+from kivy.metrics import dp
 from kivy.lang import Builder
 from kivy.uix.relativelayout import RelativeLayout
 from kivy import platform
-from kivy.core.window import Window
+
 from kivy.graphics.context import Clock
 from kivy.app import App
 from kivy.graphics import Color, Line, Quad, Triangle
@@ -58,12 +62,12 @@ class GameWidget(RelativeLayout):
     ship_base_height = 0.04
     ship_coordinates = [(0, 0), (0, 0), (0, 0)]
 
-    volume = .05
+    volume = .5
 
     game_over = False
     active = False
 
-    game_title = StringProperty('G   A   L   A   X   Y')
+    game_title = StringProperty('G      A       L       A       X       Y')
     play_button = StringProperty('PLAY')
     scores = StringProperty()
     level = StringProperty()
@@ -71,7 +75,7 @@ class GameWidget(RelativeLayout):
     level_offset = 1
     pause_button = StringProperty("PAUSE")
     exit_button = StringProperty("EXIT")
-    f_size = dp(15)
+    f_size = dp(30)
 
     sound_begin = None
     sound_galaxy = None
@@ -327,8 +331,8 @@ class GameWidget(RelativeLayout):
     def check_screen_width(self):
         if self.width <= 200:
             self.opacity = 0
-            # self.sound_music.stop()
-            self.music_one.stop()
+            self.sound_music.stop()
+            # self.music_one.stop()
         else:
             self.opacity = 1
 
@@ -340,20 +344,20 @@ class GameWidget(RelativeLayout):
                 self.game_title = "GALAXY"
         else:
             if self.game_over:
-                self.game_title = "G    A   M   E    O  V   E   R"
+                self.game_title = "G        A       M       E       O       V       E       R"
                 self.f_size = dp(10)
             else:
-                self.game_title = "G   A   L   A   X   Y"
+                self.game_title = "G        A       L       A       X       Y"
 
     def game_over_actions(self):
         """End the game."""
         if not self.check_ship_collision() and not self.game_over:
             self.game_over = True
             self.menu_widget.opacity = 1
-            self.game_title = "G    A   M   E    O  V   E   R"
+            self.game_title = "G        A       M       E       O       V       E       R"
             self.sound_game_over_impact.play()
-            # self.sound_music.stop()
-            self.music_one.stop()
+            self.sound_music.stop()
+            # self.music_one.stop()
             Clock.schedule_once(self.play_game_over_sound, 2)
 
     def play_game_over_sound(self, dt):
@@ -365,8 +369,8 @@ class GameWidget(RelativeLayout):
             self.sound_restart.play()
         else:
             self.sound_begin.play()
-        # self.sound_music.play()
-        self.music_one.play()
+        self.sound_music.play()
+        # self.music_one.play()
         self.reset()
         self.active = True
         self.menu_widget.opacity = 0
@@ -411,15 +415,15 @@ class GameWidget(RelativeLayout):
         if self.active:
             self.active = False
             self.pause = True
-            # self.sound_music.stop()
-            self.music_one.stop()
+            self.sound_music.stop()
+            # self.music_one.stop()
 
     def resume_game(self):
         self.game_over = False
         self.pause = False
         self.active = True
-        # self.sound_music.play()
-        self.music_one.play()
+        self.sound_music.play()
+        # self.music_one.play()
 
     def pause_resume_control(self):
         if self.menu_widget.opacity == 0:
