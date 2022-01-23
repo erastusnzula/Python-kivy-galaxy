@@ -6,20 +6,18 @@ import random
 
 from kivy.config import Config
 
-Config.set('graphics', 'width', '1366')
-Config.set('graphics', 'height', '768')
+# Config.set('graphics', 'width', '1366')
+# Config.set('graphics', 'fullscreen', 'auto')
+# Config.set('graphics', 'window_state', 'maximized')
+# Config.set('graphics', 'height', '768')
 Config.set('kivy', 'window_icon', 'images/bg1.jpeg')
 
 from kivy.core.window import Window
-
-Window.fullscreen = True
-
 from kivy.core.audio import SoundLoader
 from kivy.metrics import dp
 from kivy.lang import Builder
 from kivy.uix.relativelayout import RelativeLayout
 from kivy import platform
-
 from kivy.graphics.context import Clock
 from kivy.app import App
 from kivy.graphics import Color, Line, Quad, Triangle
@@ -76,6 +74,7 @@ class GameWidget(RelativeLayout):
     pause_button = StringProperty("PAUSE")
     exit_button = StringProperty("EXIT")
     f_size = dp(30)
+    # set_score = 0
 
     sound_begin = None
     sound_galaxy = None
@@ -315,6 +314,7 @@ class GameWidget(RelativeLayout):
             while self.current_offset_y >= y_spacing:
                 self.current_offset_y -= y_spacing
                 self.y_loop += 1
+                # self.set_score += 5
                 self.scores = 'SCORE : ' + str(self.y_loop)
 
                 if self.y_loop in self.levels:
@@ -449,4 +449,5 @@ class GameApp(App):
 
 
 if __name__ == '__main__':
+    Window.fullscreen = 'auto'
     GameApp().run()
