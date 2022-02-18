@@ -362,9 +362,11 @@ class GameWidget(RelativeLayout):
 
     def play_game_over_sound(self, dt):
         if self.game_over:
+            Window.show_cursor = True
             self.sound_game_over_voice.play()
 
     def play_button_pressed(self, *args):
+        Window.show_cursor = False
         if self.game_over:
             self.sound_restart.play()
         else:
